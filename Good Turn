@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Read the number of test cases
+        int t = scanner.nextInt();
+        
+        while (t-- > 0) {
+            // Read the values of X and Y
+            int x = scanner.nextInt();
+            int y = scanner.nextInt();
+            
+            // Check if the sum is greater than 6
+            if (x + y > 6) {
+                System.out.println("YES");
+            } else {
+                System.out.println("NO");
+            }
+        }
+        
+        scanner.close();
+    }
+}
