@@ -1,0 +1,25 @@
+class Solution {
+    public int countSpecialIntegers(int[] nums) {
+        boolean[] seen = new boolean[101];
+        boolean[] invalid = new boolean[101];
+
+        for (int i = 0; i < nums.length; i++) {
+            int x = nums[i];
+
+            if (i == 0 || nums[i] != nums[i - 1]) {
+                if (seen[x]) {
+                    invalid[x] = true;
+                }
+                seen[x] = true;
+            }
+        }
+
+        int count = 0;
+        for (int i = 1; i <= 100; i++) {
+            if (seen[i] && !invalid[i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
