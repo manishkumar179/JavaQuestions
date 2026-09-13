@@ -1,0 +1,46 @@
+import java.util.*;
+class Solution {
+    public int minOperations(int[] nums, int sum) {
+        int INF = 1000000;
+        int[] dp = new int[sum + 1];
+        Arrays.fill(dp, INF);
+        dp[0] = 0;
+
+        for(int num : nums){
+            int[] next = dp.clone();
+
+            int value = num;
+            int cost = 0;
+
+            while(value <= sum){
+                for(int s = 0; s+value <= sum; s++){
+                    if(dp[s] != INF){
+                        next[s + value] = 
+                            Math.min(next[s + value], dp[s] + cost);
+                    }
+                }
+                if(value > sum/2)
+                    break;
+
+                value *= 2;
+                cost++;
+            }
+            value = num;
+            cost = 0;
+
+            while(value > 1){
+                value /= 2;
+                cost++;
+
+                for(int s = 0; s + value <= sum; s++){
+                    if(dp[s] != INF){
+                        next[s + value] = 
+                            Math.min(next[s + value], dp[s] + cost);
+                    }
+                }
+            }
+            dp = next;
+        }
+        return dp[sum] == INF ? -1 : dp[sum];
+    }
+}
