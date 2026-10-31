@@ -1,0 +1,36 @@
+// Parent class
+class Animal {
+    void makeSound() {
+        System.out.println("The animal makes a sound");
+    }
+}
+
+// Subclass 1
+class Dog extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The dog barks: Woof! Woof!");
+    }
+}
+
+// Subclass 2
+class Cat extends Animal {
+    @Override
+    void makeSound() {
+        System.out.println("The cat meows: Meow!");
+    }
+}
+
+public class RuntimePolymorphismDemo {
+    public static void main(String[] args) {
+        // Parent class reference points to a Dog object
+        Animal myDog = new Dog();
+        
+        // Parent class reference points to a Cat object
+        Animal myCat = new Cat();
+        
+        // Both call the same method name, but yield different behaviors
+        myDog.makeSound(); // Outputs: The dog barks: Woof! Woof!
+        myCat.makeSound(); // Outputs: The cat meows: Meow!
+    }
+}
